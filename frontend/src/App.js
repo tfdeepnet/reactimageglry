@@ -25,7 +25,7 @@ function App() {
     setWord("");
   };
 
-  console.log(process.env.REACT_APP);
+  //console.log(process.env.REACT_APP);
   return (
     <div className="App">
       <Header title="Images gallery!!" />
