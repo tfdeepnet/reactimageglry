@@ -7,6 +7,8 @@ import Search from "./components/Search";
 
 function App() {
   const [word, setWord] = useState("");
+  const [images, setImages] = useState([]);
+  console.log(images);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -15,9 +17,9 @@ function App() {
     fetch(
       `https://api.unsplash.com/photos/random/?query=${word}&client_id=${process.env.REACT_APP_UNSPALSH_KEY}`
     )
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setImages([data, ...images]);
       })
       .catch((err) => {
         console.log(err);
