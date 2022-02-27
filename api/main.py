@@ -12,10 +12,10 @@ app = Flask(__name__)
 # app.route("/")(hello)
 
 UNSPLASH_URL="https://api.unsplash.com/photos/random"
-UNSPLASH_KEY="ffInDkmie3zoGFuhUU9klJLe4mUJfgi1LNx-wBpIw7Q"
+UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY","")
 
 load_dotenv(dotenv_path="./.env.local")
-print(os.environ.get("UNSPLASH_KEY",""))
+print()
 
 # main approach
 @app.route("/new-image")
