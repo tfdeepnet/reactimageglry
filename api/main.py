@@ -4,18 +4,24 @@ import requests
 from flask import Flask , request
 from dotenv import load_dotenv
 
+load_dotenv(dotenv_path="./.env.local")
+
+UNSPLASH_URL="https://api.unsplash.com/photos/random"
+UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY","")
+DEBUG= bool(os.environ.get("DEBUG",True))
+print(DEBUG)
+
 app = Flask(__name__)
+
+app.config["DEBUG"]= DEBUG
 
 #alternative approach
 # def hello():
 #   return "Hello, venv World!"
 # app.route("/")(hello)
 
-UNSPLASH_URL="https://api.unsplash.com/photos/random"
-UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY","")
-
-load_dotenv(dotenv_path="./.env.local")
-print()
+if not UNSPLASH_KEY:
+  raise EnvironmentError("Pease create .env.local file and insert UNSPALSH_KEY")
 
 # main approach
 @app.route("/new-image")
